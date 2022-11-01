@@ -1,0 +1,41 @@
+{
+  "name": "Equitti Tokens #1",
+  "description": "Gain profit buying equitti upon wonderful projects",
+  "external_url": "https://equitti.com/",
+  "image": "https://equitti.com/wp-content/uploads/2022/10/1.png",
+  "attributes": [
+    {
+      "trait_type": "Tipo",
+      "value": "Restaurante"
+    },
+    {
+      "trait_type": "Porciones",
+      "value": "100000000"
+    },
+    {
+      "trait_type": "Plantas",
+      "value": "Arbol Izquierda"
+    },
+    {
+      "trait_type": "Paredes",
+      "value": "2 paredes"
+    },
+    {
+      "trait_type": "Ventanas",
+      "value": "Ventana"
+    },
+    {
+      "trait_type": "Techo",
+      "value": "1 Techo"
+    },
+    {
+      "trait_type": "Balcon",
+      "value": "Balcon segundo piso"
+    },
+    {
+      "trait_type": "Puertas",
+      "value": "Puerta de garaje"
+    }
+  ],
+  "compiler": "HashLips Art Engine"
+}
