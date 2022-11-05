@@ -50,7 +50,8 @@ import "@openzeppelin/contracts@4.4.1/security/ReentrancyGuard.sol";
         uint256 projectTotalSupply;
         mapping (address => uint256) projectOwnerShares; //mapping (uint256 => address) projectOwnerShares;
         mapping (address => bool) addressProjectHolder;
-        mapping (address => uint256) ProfitGainsByOwner; 
+        mapping (address => uint256) profitGainsByOwner; 
+        mapping (address => uint256) profitClaimedByOwner; 
         string projectURI;
     }
         mapping (uint256 => Project) projectStructs;
@@ -58,7 +59,7 @@ import "@openzeppelin/contracts@4.4.1/security/ReentrancyGuard.sol";
         Project[] public projectsData;
         uint256 public totalProjects;
 
-        constructor(string memory tokenURI) ERC1155(tokenURI) {
+        constructor() ERC1155("tokenURI/") {
         _grantRole(DEFAULT_ADMIN_ROLE, msg.sender);
         _grantRole(URI_SETTER_ROLE, msg.sender);
         _grantRole(PAUSER_ROLE, msg.sender);
@@ -165,8 +166,9 @@ import "@openzeppelin/contracts@4.4.1/security/ReentrancyGuard.sol";
         payable {
             uint256 deposit = msg.value;
             for (uint i=0;i<=projectStructs[_id].projectHolders.length;i++){
-                uint256 ownerPercentage = projectStructs[_id].projectOwnerShares[projectStructs[_id].projectHolders[i]]/projectStructs[_id].projectTotalSupply;
-                payable(projectStructs[_id].projectHolders[i]).transfer(deposit*ownerPercentage);
+                uint256 ownerPercentage = 100*projectStructs[_id].projectOwnerShares[projectStructs[_id].projectHolders[i]]/projectStructs[_id].projectTotalSupply;
+                projectStructs[_id].profitGainsByOwner[projectStructs[_id].projectHolders[i]] += deposit*ownerPercentage;
+                //payable(projectStructs[_id].projectHolders[i]).transfer(deposit*ownerPercentage);
             }
             //getProjectGainsOfHolder()
             // projectStructs[_id].projectProfit = deposit;
